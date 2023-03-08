@@ -1,33 +1,22 @@
-.env
-node_modules
-# IDE files
-.DS_Store
-.vscode
-.idea
-.iml
-.history
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-node_modules
-start-here-guidelines
-start
+/node_modules
+/.pnp
+.pnp.js
 
-# Log file
-.log
+# testing
+/coverage
 
-# Package Files
-.zip
-.gzip
-.tar.gz
-.rar
+# production
 
-# Compiled class file
-.class
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-#Other folders
-lib
-logs
-target
-out
-out
-gen
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
