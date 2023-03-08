@@ -15,7 +15,7 @@ mongoose.connect(process.env.MONGO_URL,{
     useNewUrlParser: true,
     useUnifiedTopology: true,
  }).then(
-    console.log('connect to mongo')
+    console.log('connect to mongodb')
 ).catch((err) => console.log(err))
 
 
