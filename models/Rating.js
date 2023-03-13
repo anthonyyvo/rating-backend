@@ -39,6 +39,10 @@ const RateSchema = new mongoose.Schema({
     position: {
         type: [String],
         required: false
+    },
+    comments: {
+        type: [String],
+        required: false
     }
 
 },

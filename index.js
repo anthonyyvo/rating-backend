@@ -8,7 +8,7 @@ const { default: rate_router } = require('./routes/rating');
 dotenv.config();
 const path = require("path");
 const cors = require('cors');
-
+const multer = require("multer");
 
 mongoose.set('strictQuery', false);
 mongoose.connect(process.env.MONGO_URL,{ 
@@ -23,6 +23,21 @@ const app =  express();
 
 app.use(cors());
 app.use(express.json());
+app.use("/images" , express.static(path.join(__dirname, "/images")));
+
+const storage =  multer.diskStorage({
+    destination: (req, file,cb) => {
+        cb(null, "images")
+    },
+    filename: (req, file,cb) => {
+        cb(null, file.originalname)
+    }
+});
+const upload =  multer({storage: storage});
+app.post("/api/upload", upload.single("file"), (req,res) => {
+    res.status(200).json("File has been upload")
+})
+
 app.get('/api', (req, res) => {
     res.send('hello world');
 });
@@ -30,7 +45,9 @@ app.use('/api/rating',rateRouter);
 app.use('/api/auth', authRouter);
 
 app.use('/api/users',usersRouter);
-
+app.get('/', (req, res) => {
+    res.send('hello world');
+});
 
 app.listen('5000', ()=> {
     console.log('Server is running...')

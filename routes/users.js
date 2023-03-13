@@ -14,8 +14,11 @@ router.put("/:id", async (req, res) => {
             };
             if (req.body.username) {newUpdateUser.username = req.body.username};
             if (req.body.email) {newUpdateUser.email = req.body.email}
-            if (req.body.profilePic) {
-                newUpdateUser.profilePicture = req.body.profilePic
+            if (req.body.profilePicture) {
+                newUpdateUser.profilePicture = req.body.profilePicture
+            }
+            if (req.body.displayName) {
+                newUpdateUser.displayName = req.body.displayName
             }
 
             try {

@@ -29,18 +29,18 @@ rateRouter.get("/", async (req,res) => {
     try {
         let allRatings;
         if (location) {
-            allRatings = await Rating.find({location});
+            allRatings = await Rating.find({location}).sort({createdAt: -1});
         } else if (satisfied) {
-            allRatings = await Rating.find({satisfied});
+            allRatings = await Rating.find({satisfied}).sort({createdAt: -1});
         } else if (days) {
             var d = new Date();
             d.setDate(d.getDate() - days);
             allRatings = await Rating.find(
                 {createdAt : { $gte : d} }
-                )
+                ).sort({createdAt: -1})
         }
          else {
-             allRatings = await Rating.find();
+             allRatings = await Rating.find({}).sort({createdAt: -1});
         }
         res.status(200).json(allRatings)
     } catch (err) {
