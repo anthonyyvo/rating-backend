@@ -9,6 +9,7 @@ dotenv.config();
 const path = require("path");
 const cors = require('cors');
 const multer = require("multer");
+const http = require('http');
 
 mongoose.set('strictQuery', false);
 mongoose.connect(process.env.MONGO_URL,{ 
@@ -48,8 +49,8 @@ app.use('/api/users',usersRouter);
 app.get('/', (req, res) => {
     res.send('hello world');
 });
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, ()=> {
-    console.log('Server is running...')
+const port = process.env.PORT || 5000;
+const server = http.createServer(app);
+server.listen(port, ()=> {
+    console.log(`Server running on port ${port}`)
 })
