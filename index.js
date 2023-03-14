@@ -25,9 +25,7 @@ const app =  express();
 app.use(cors());
 app.use(express.json());
 app.use("/images" , express.static(path.join(__dirname, "/images")));
-app.get("/image.png", (req, res) => {
-    res.sendFile(path.join(__dirname, "./uploads/image.png"));
-  });
+
 
 const storage =  multer.diskStorage({
     destination: (req, file,cb) => {
