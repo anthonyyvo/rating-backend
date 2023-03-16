@@ -22,7 +22,7 @@ mongoose.connect(process.env.MONGO_URL,{
 
 const app =  express();
 
-
+const frontend = process.env.FRONTEND_SERVER;
 app.use(cors({
     origin: process.env.FRONTEND_SERVER
 }));
@@ -61,5 +61,5 @@ app.get('/', (req, res) => {
 const port = process.env.PORT || 5000;
 const server = http.createServer(app);
 server.listen(port, ()=> {
-    console.log(`Server running on port ${port}`)
+    console.log(`Server running on port ${port}. Frontent ${frontend}`)
 })
