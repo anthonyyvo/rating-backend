@@ -28,13 +28,15 @@ auth_router.post("/login", async (req,res) => {
     try {
         const user = await User.findOne({username: req.body.username});
         if(!user) {
-            res.status(400).json('Can not find user')
+            res.status(400).json('Can not find user');
+            
         } else {
             const validated =  bcrypt.compareSync(req.body.password, user.password);
             if(!validated) {
                 res.status(400).json('Wrong Password');
             } else {
                 const  {password, ...other} = user._doc;
+                res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
                 res.status(200).json(other);
             }
         }
