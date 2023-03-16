@@ -36,7 +36,7 @@ auth_router.post("/login", async (req,res) => {
                 res.status(400).json('Wrong Password');
             } else {
                 const  {password, ...other} = user._doc;
-                res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+                // res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
                 res.status(200).json(other);
             }
         }
