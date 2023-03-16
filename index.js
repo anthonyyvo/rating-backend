@@ -24,7 +24,7 @@ const app =  express();
 
 const frontend = process.env.FRONTEND_SERVER;
 app.use(cors({
-    origin: process.env.FRONTEND_SERVER
+    origin: frontend
 }));
 app.use(express.json());
 app.use("/images" , express.static(path.join(__dirname, "/images")));
