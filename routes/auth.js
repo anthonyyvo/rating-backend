@@ -6,7 +6,6 @@ const saltRounds = 10;
 
 //REGISTER
 auth_router.post("/register", async (req, res) => {
-    console.log('auth...')
     try {
         const salt =  await bcrypt.genSalt(10);
         const hashPass =await bcrypt.hash(req.body.password,salt)
@@ -15,7 +14,8 @@ auth_router.post("/register", async (req, res) => {
             email: req.body.email,
             password: hashPass,
             displayName: req.body.email,
-            role: 'manager'
+            isAdmin: false,
+            role: 'user'
         })
         const user = await newUser.save();
         res.status(200).json(user);

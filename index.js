@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const rateRouter = require('./routes/rating');
 const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
+const adminRouter = require('./routes/admin');
 const dotenv = require('dotenv');
 const { default: rate_router } = require('./routes/rating');
 dotenv.config();
@@ -10,6 +11,9 @@ const path = require("path");
 const cors = require('cors');
 const multer = require("multer");
 const http = require('http');
+const bodyParser = require('body-parser');
+
+
 
 mongoose.set('strictQuery', false);
 mongoose.connect(process.env.MONGO_URL,{ 
@@ -21,7 +25,7 @@ mongoose.connect(process.env.MONGO_URL,{
 
 
 const app =  express();
-
+app.use(bodyParser.json());
 const frontend = process.env.FRONTEND_SERVER;
 app.use(cors({
     origin: frontend
@@ -46,6 +50,7 @@ app.post("/api/upload", upload.single("file"), (req,res) => {
 app.get('/api', (req, res) => {
     res.send('hello world');
 });
+app.use('/api/admin', adminRouter);
 app.use('/api/rating',rateRouter);
 app.use('/api/auth', authRouter);
 app.get('/api/images/:name', (req,res) => {

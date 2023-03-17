@@ -20,10 +20,18 @@ const UserSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        require: false,
+        require: true,
     },
     displayName : {
         type: String,
+        require: false,
+    },
+    isAdmin: {
+        type: Boolean,
+        require: true,
+    },
+    location: {
+        type: Number,
         require: false,
     }
 

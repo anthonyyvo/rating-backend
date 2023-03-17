@@ -20,6 +20,9 @@ router.put("/:id", async (req, res) => {
             if (req.body.displayName) {
                 newUpdateUser.displayName = req.body.displayName
             }
+            if (req.body.location) {
+                newUpdateUser.location = req.body.location
+            }
 
             try {
                 const updateUser = await User.findByIdAndUpdate(req.params.id,{
