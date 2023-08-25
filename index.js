@@ -4,6 +4,7 @@ const rateRouter = require('./routes/rating');
 const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
 const adminRouter = require('./routes/admin');
+const questionsRouter = require('./routes/questions')
 const dotenv = require('dotenv');
 const { default: rate_router } = require('./routes/rating');
 dotenv.config();
@@ -53,6 +54,8 @@ app.get('/api', (req, res) => {
 app.use('/api/admin', adminRouter);
 app.use('/api/rating',rateRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/questions', questionsRouter);
+
 app.get('/api/images/:name', (req,res) => {
     const imagesName =  req.params.name;
     res.sendFile(path.join(__dirname, `./images/${imagesName}`));
@@ -63,7 +66,8 @@ app.use('/api/users',usersRouter);
 app.get('/', (req, res) => {
     res.send('hello world');
 });
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3001;
+// const port = 5000;
 const server = http.createServer(app);
 server.listen(port, ()=> {
     console.log(`Server running on port ${port}. Frontent ${frontend}`)
