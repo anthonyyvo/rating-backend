@@ -32,7 +32,7 @@ try {
     if (findQuestion) {
         res.status(200).json(findQuestion);
     } else {
-        res.status(500).json("Can not find")
+        res.status(500).json("Can not find question")
     }
   
 
@@ -101,7 +101,6 @@ question_router.put('/:id', async (req,res) => {
             } else {
                 res.status(401).json("You are not allow delete question")
             }
-        
         } catch (err) {
             res.status(500).json("Can not authorize delete")
         };
