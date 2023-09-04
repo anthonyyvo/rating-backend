@@ -85,11 +85,11 @@ rateRouter.delete("/:id", async (req,res) => {
     console.log(req.body);
     console.log(ratingId);
     try {
-         if (req.body.isAdmin === true) {
+         if (req.body.isAdmin || req.body.isMod) {
             const deleteRes = await Rating.findByIdAndDelete(ratingId);
             res.status(200).json(deleteRes);
          } else {
-            res.status(403).json('Only admin can delete.')
+            res.status(403).json('Only admin or mod can delete.')
          };
     } catch (err) {
         res.status(500).json(err)

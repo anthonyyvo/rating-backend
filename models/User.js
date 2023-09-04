@@ -30,6 +30,10 @@ const UserSchema = new mongoose.Schema({
         type: Boolean,
         require: true,
     },
+    isMod: {
+        type: Boolean,
+        require: true,
+    },
     location: {
         type: Number,
         require: false,
