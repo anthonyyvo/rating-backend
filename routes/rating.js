@@ -59,7 +59,6 @@ rateRouter.get("/:id", async (req,res) => {
     }
 })
 rateRouter.put("/:id", async (req, res) => {
-    console.log(req.body);
     try {
         const rating = await Rating.findById(req.params.id);
         const {userLocation, ...other} = req.body;
@@ -82,8 +81,7 @@ rateRouter.put("/:id", async (req, res) => {
 })
 rateRouter.delete("/:id", async (req,res) => {
     const ratingId =  req.params.id;
-    console.log(req.body);
-    console.log(ratingId);
+
     try {
          if (req.body.isAdmin || req.body.isMod) {
             const deleteRes = await Rating.findByIdAndDelete(ratingId);

@@ -8,7 +8,7 @@ question_router.post('/', async (req,res) => {
     const newQuestion = new Question(req.body);
 try {
     const findUser = User.findOne({username: req.body.username});
-    if (findUser) {
+    if (findUser && findUser.isAdmin) {
         try {
             const savedQuestion = await newQuestion.save();
             res.status(200).json({savedQuestion});
